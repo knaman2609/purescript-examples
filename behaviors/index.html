@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>FRP</title>
+      <style>
+       .gear-container {
+           width: 260px;
+           height: 340px;
+           position: relative;
+           margin: 0 auto;
+       }
+
+       .gear {
+           position: absolute;
+           width: 100px;
+           height: 100px;
+       }
+
+       .gear img {
+           max-width: 100%;
+           max-height: 100%;
+       }
+
+       .gear1 {
+           top: 100px;
+       }
+
+       .gear2 {
+           left: 79px;
+           top: 42px;
+       }
+
+       .gear3 {
+           left: 158px;
+           top: 100px;
+       }
+
+       .rotate {
+           -webkit-animation-duration: 8s;
+           -webkit-animation-timing-function: linear;
+           -webkit-animation-iteration-count: infinite;
+        }
+
+       .clockwise {
+           -webkit-animation-name: clockwise;
+       }
+
+       .anti-clockwise {
+           -webkit-animation-name: anti-clockwise;
+       }
+
+        @keyframes clockwise {
+            from {
+                -webkit-transform: rotate(0deg);
+            }
+            to {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes anti-clockwise {
+            from {
+                -webkit-transform: rotate(360deg);
+            }
+            to {
+                -webkit-transform: rotate(0deg);
+            }
+        }
+
+       .instruction {
+           width: 100%;
+           text-align:center;
+           font-family: Arial;
+           font-size: 20px;
+       }
+
+      </style>
+  </head>
+  <body>
+      <div class="gear-container">
+        <div class="gear gear1">
+            <img src="gear_checked.png"/>
+        </div>
+
+        <div class="gear gear2">
+            <img src="gear_checked.png"/>
+        </div>
+
+        <div class="gear gear3">
+            <img src="gear_checked.png"/>
+        </div>
+      </div>
+      <div class="instruction">Click on the gears to start/stop the machine</div>
+      <script src="index.js"></script>
+      <script>
+       SUB(true)()
+      </script>
+  </body>
+</html>
