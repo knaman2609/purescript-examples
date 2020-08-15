@@ -1,12 +1,11 @@
 module Main where
 
 import Data.Maybe
-import FRP
-import Math
+import FRP.Behavior
 import Prelude
 
-import Control.Monad.Eff (Eff)
-import Control.Monad.Eff.Console (CONSOLE, log, logShow)
+import Effect (Effect)
+import Effect.Class.Console 
 import Control.Plus ((<|>))
 import FRP.Behavior (behavior, sample_, step)
 import FRP.Event (Event, subscribe, create)
@@ -14,8 +13,8 @@ import FRP.Event (Event, subscribe, create)
 newtype Id = Id String
 newtype Direction = Direction String
 
-foreign import rotate :: ∀ eff.  Id -> Direction -> Eff eff Unit
-foreign import attachEvents :: forall a b eff.  Id ->  (b ->  Eff (frp::FRP | eff) Unit) -> Unit
+foreign import rotate ::  Id -> Direction -> Effect  Unit
+foreign import attachEvents :: forall a b .  Id ->  (b ->  Effect Unit) -> Unit
 
 rotateAll = do
   rotate (Id "gear1") (Direction "clockwise")
@@ -40,6 +39,8 @@ main = do
   sig1 <- getSig (Id "gear1")
   sig2 <- getSig (Id "gear2")
   sig3 <- getSig (Id "gear3")
+
+  log "hello"
 
   let behavior = runSystem <$> sig1.behavior <*> sig2.behavior <*> sig3.behavior
   sample_ behavior (sig1.event <|> sig2.event <|> sig3.event) `subscribe` (\x -> if x then
