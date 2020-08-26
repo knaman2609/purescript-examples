@@ -5,12 +5,6 @@ import Data.Array
 import Data.Maybe
 import Effect (Effect)
 import Effect.Class.Console
-
-import Partial.Unsafe
-import Data.Generic.Rep
-import Test.QuickCheck.Arbitrary (class Arbitrary, arbitrary, genericArbitrary)
-import Test.QuickCheck.Gen (Gen, randomSample')
-
 type Small r = {
   name :: String,
   id:: Int
