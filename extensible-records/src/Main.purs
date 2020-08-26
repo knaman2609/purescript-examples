@@ -3,32 +3,38 @@ module Main where
 import Prelude
 import Data.Array
 import Data.Maybe
-import Control.Monad.Eff 
-import Control.Monad.Eff.Console 
+import Effect (Effect)
+import Effect.Class.Console
 
 import Partial.Unsafe
 import Data.Generic.Rep
 import Test.QuickCheck.Arbitrary (class Arbitrary, arbitrary, genericArbitrary)
 import Test.QuickCheck.Gen (Gen, randomSample')
 
-data Props = P {id :: String , p :: Int}
-data Q = QS String | QI Int
-type M t = {value :: Q , props:: Props  | t}
+type Small r = {
+  name :: String,
+  id:: Int
+  | r
+}
 
-derive instance genericProps :: Generic (Props) _
-instance arbitraryProps :: Arbitrary Props  where arbitrary = genericArbitrary
+type Big = {
+  name :: String,
+  id:: Int,
+  location :: String,
+  username :: String
+}
 
-logProps (P props) = do
-  log props.id
-  log $ show props.p
 
-fn p@{value: (QS x)}  = do
-  log x
-  logProps p.props
+fn :: forall r. Small r -> Effect Unit
+fn x = log x.name
 
-fn {value: (QI _)}  = do
-  log "something"
+main = do
 
-main = unsafePartial $ do
-  x <- randomSample' 1 (arbitrary :: Gen Props)
-  fn {value: QS "Naman", id: 1, props: (fromJust $ head x)}
+  let big = {
+    name : "Naman",
+    id: 1,
+    location: "lohaghat",
+    username: "knaman"
+  }
+
+  fn big

@@ -7,14 +7,15 @@
     "output"
   ],
   "dependencies": {
-    "purescript-prelude": "^3.1.1",
-    "purescript-console": "^3.0.0",
-    "purescript-generics": "^4.0.0",
-    "purescript-generics-rep": "^5.4.0",
-    "purescript-partial": "^1.2.1",
-    "purescript-quickcheck": "^4.6.1"
+    "purescript-prelude": "^4.1.1",
+    "purescript-console": "^4.4.0",
+    "purescript-effect": "^2.0.1",
+    "purescript-either": "^4.1.1",
+    "purescript-generics-rep": "^6.1.1",
+    "purescript-partial": "^2.0.1",
+    "purescript-quickcheck": "^6.1.0"
   },
   "devDependencies": {
-    "purescript-psci-support": "^3.0.0"
+    "purescript-psci-support": "^4.0.0"
   }
 }
