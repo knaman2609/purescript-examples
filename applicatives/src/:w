@@ -28,13 +28,17 @@ withError (Just a) _   = Validation (Right a)
 fullName :: String -> String -> String -> String
 fullName first middle last = last <> ", " <> first <> " " <> middle
 
-fullNameEither :: Maybe String -> Maybe String -> Maybe String -> Validation (Array String) String
+-- fullNameEither :: Maybe String -> Maybe String -> Maybe String -> Validation (Array String) String
 fullNameEither first middle last =
-  map fullName (withError first ["first name error"])
-  <*> (withError middle  ["middle name error"])
-  <*> ( withError last ["last name error"])
+  map fullName (withError first ["hello"])
+  <*> (withError middle  ["hi"])
+  <*> ( withError last ["is"])
 
 main :: Effect Unit
 main = do
   let x = fullNameEither  (Nothing) (Just "Naman") (Nothing)
+
   log $ show x
+  -- case x of
+  --   Validation (Right r) -> log $ show r
+  --   Validation (Left e) -> log $ show e
