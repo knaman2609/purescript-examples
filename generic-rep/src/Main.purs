@@ -11,6 +11,6 @@ import Data.Generic.Rep.Show
 data Foo  = Foo String
 derive instance genericFoo :: Generic (Foo) _
 
-main :: forall e. Effect  Unit
+main :: Effect  Unit
 main = do
   log $ genericShow (Foo "hello")

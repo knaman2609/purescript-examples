@@ -1,22 +1,23 @@
 module Main where
 
-import Control.Monad.Eff
-import Control.Monad.Eff.Class
-import Control.Monad.Eff.Console
-import Control.Monad.State.Trans
-import Data.Array
-import Data.Identity
-import Data.Tuple
 import Prelude
+import Effect
+import Effect.Console
+import Effect.Class
+
+import Control.Monad.State.Trans
+
+import Data.Tuple
 
 
-fn :: forall eff. String -> StateT (Array String) (Eff (console :: CONSOLE | eff)) Unit
+fn :: String -> StateT (String) (Effect  Unit)
 fn x = do
   put [x]
   newState <- get
-  liftEff $ logShow newState
+  liftEffect $ logShow newState
   modify (\s -> append s ["bar"])
 
+main :: Effect Unit
 main = do
   Tuple a s <- runStateT (fn "init") []
   logShow s
