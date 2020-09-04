@@ -10,12 +10,13 @@ import Control.Monad.State.Trans
 import Data.Tuple
 
 
-fn :: String -> StateT (String) (Effect  Unit)
+fn :: String -> StateT (Array String) Effect Unit
 fn x = do
   put [x]
   newState <- get
   liftEffect $ logShow newState
-  modify (\s -> append s ["bar"])
+  _ <- modify (\s -> s <> ["hello"])
+  pure unit
 
 main :: Effect Unit
 main = do
