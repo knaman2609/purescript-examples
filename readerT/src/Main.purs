@@ -9,16 +9,6 @@ import Effect.Console (log)
 
 newtype Person = Person {name :: String, age :: String}
 
-data X = X
-
-class Dothis a where
-  dothis  ::  a -> Int
-
-instance xdoThis :: Dothis X where
-  dothis X = 1
-
-instance xdoThi :: Dothis (Array a) where
-  dothis  = 1
 
 logAge :: ReaderT Person  Effect Unit
 logAge = do
