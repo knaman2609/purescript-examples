@@ -8,22 +8,20 @@ import Data.Generic.Rep.Show (genericShow)
 import Foreign.Generic (defaultOptions, genericEncodeJSON, genericDecodeJSON)
 import Control.Monad.Except.Trans
 import  Control.Monad.Except
-
+import View.Types(User(..))
 
 foreign import getRecord :: Effect String
 
 
-newtype MyRecord = MyRecord { a :: Int }
-derive instance genericMyRecord :: Generic MyRecord _
-instance showMyRecord :: Show MyRecord where show = genericShow
+
 
 opts = defaultOptions { unwrapSingleConstructors = true }
 
-decode json = genericDecodeJSON opts json :: _ MyRecord
+decode json = genericDecodeJSON opts json :: _ User
 
 main :: Effect Unit
 main = do
-  let x = genericEncodeJSON opts (MyRecord { a: 1 })
+  let x = genericEncodeJSON opts (User { 	name: "foo", age: 21, address:{ street:  21, locality: "kormangla", pincode: 511037 } })
   log x
 
   json <- getRecord
