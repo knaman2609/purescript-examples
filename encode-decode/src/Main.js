@@ -1,3 +1,4 @@
 exports["getRecord"] = function() {
-    return  "{\"a\":1}"
+    var config = require("../../example.json");
+    return JSON.stringify(config);
 }

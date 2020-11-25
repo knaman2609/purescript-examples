@@ -1,0 +1,9 @@
+{
+	"name": "foo",
+	"age": 21,
+	"address": {
+		"street":  21,
+		"locality": "kormangla",
+		"pincode": 511037	
+    }
+}
